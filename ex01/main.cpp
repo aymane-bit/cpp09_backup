@@ -22,6 +22,5 @@ int main(int ac, char **argv)
     }
     RPN rpn;
     rpn.evaluate(argv[1]);
-
     return 0;
 }

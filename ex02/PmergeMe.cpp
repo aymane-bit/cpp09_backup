@@ -59,8 +59,12 @@ bool        PmergeMe::isNotDigite(std::string str)
 {
     for (size_t i = 0; i < str.size(); i++)
     {
-        if (str[i] == '+' || str[i] == '-')
+        if (i == 0 && (str[i] == '+' || str[i] == '-'))
+        {
+            if (str.size() == 1)
+                return false;
             continue;        
+        }
         if (!std::isdigit(str[i]))
             return false;
     }
@@ -81,9 +85,18 @@ void    PmergeMe::copyData(const std::vector<int>     listNumber)
     std::cout << std::endl;
 }
 
+bool        PmergeMe::checkForDup(const std::vector<int>& temp)
+{
+    for (size_t i = 0; i < temp.size(); ++i)
+        for (size_t j = i + 1; j < temp.size(); ++j)
+            if (temp[i] == temp[j])
+                return true;
+    return false;
+}
+
 bool        PmergeMe::checkData(int argc, char **argv) 
 {
-    std::vector<int>  test;
+    std::vector<int>  temp;
     
     for (int i = 1; i < argc; i++)
     {
@@ -98,9 +111,14 @@ bool        PmergeMe::checkData(int argc, char **argv)
             std::cout << "Error : Negative Number\n";
             return false;
         }
-        test.push_back(number);
+        temp.push_back(number);
     }
-    copyData(test);
+    if (checkForDup(temp))
+    {
+        std::cout << "Error : Duplicate Number Found!\n";
+        return false;
+    }
+    copyData(temp);
     return true;
 }
 
@@ -109,7 +127,7 @@ void    PmergeMe::sortVector( void )
     std::vector<int>    small;
     std::vector<int>    large;
 
-    clock_t start = clock();
+    clock_t start = clock(); //  3 4  1 2   small == 3 2 large 1 2
     for (size_t i = 0; i + 1 < numbersVector.size(); i += 2)
     {
         if (numbersVector[i] > numbersVector[i + 1])
@@ -122,7 +140,8 @@ void    PmergeMe::sortVector( void )
     }
     if (numbersVector.size() % 2 != 0)
         small.push_back(numbersVector.back());
-    for (size_t i = 1; i < small.size(); ++i)
+
+    for (size_t i = 1; i < small.size(); ++i) // 3 2 1 cur = 2 pos = 1 knt hna <<<<<<<<<<<<<<<<<<<<<<
     {
         int current = small[i];          // Take the current element
         size_t position = i;             // Start comparing from its position
@@ -137,6 +156,7 @@ void    PmergeMe::sortVector( void )
         // Insert the element at its correct place
         small[position] = current;
     }
+
     for (size_t i = 0; i < large.size(); ++i)
     {
         int val = large[i];

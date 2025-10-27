@@ -62,10 +62,7 @@ void    RPN::evaluate(std::string expression)
         if (expression[i] == ' ')
             continue;
         if (std::isdigit(expression[i]))
-        {
-            int num = expression[i] - '0';
-            operands.push(num);
-        }
+            operands.push(expression[i] - '0');
         else
         {
             if (operands.size() < 2)

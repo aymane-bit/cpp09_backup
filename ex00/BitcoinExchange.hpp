@@ -16,16 +16,16 @@
 #include <iostream>
 #include <map>
 #include <cstdlib>
-#include <fstream>   // for file streams
-#include <string>    // for std::string
+#include <fstream>
+#include <string>
 #include <sstream>
+#include <climits>
 
 
 class BitcoinExchange
 {
     private :
         std::map<std::string, double> data;
-    
     public :
     // C.O.F
         ~BitcoinExchange();
@@ -35,9 +35,11 @@ class BitcoinExchange
     // Methods
         void    loadData   (void);
         void    openData   (const char* fileName);
-        bool    isValidDate(std::string     date);
-        bool    isvalidVal (double           val);
+        bool    isValidDate(std::string     date, std::string line);
+        bool    isValidVal (std::string           val, std::string line);
         void    fetchValue (std::string date, double val);
+        int     daysInMonth(int year, int month);
+        bool    isInRange(std::string val);
 };
 
 

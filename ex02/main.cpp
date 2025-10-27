@@ -21,12 +21,11 @@ int main(int argc, char **argv)
     }
 
     PmergeMe pmergeMe;
+
     if (pmergeMe.checkData(argc, argv) == false)
         return 0;
     pmergeMe.sortVector();
     pmergeMe.sortDeque();
     pmergeMe.printInfo();
-    // Further implementation goes here
-
     return 0;
 }

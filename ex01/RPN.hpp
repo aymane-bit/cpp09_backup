@@ -14,7 +14,6 @@
 #define RPN_HPP
 
 #include <iostream>
-
 #include <stack>
 #include <sstream>
 #include <stdexcept>
@@ -35,8 +34,6 @@ class   RPN
         void    evaluate(std::string expression);
         bool    isOperator(char c) const ;
         bool    isValidFormat(const std::string& expression) const ;
-    
-
 };
 
 

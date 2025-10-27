@@ -38,6 +38,7 @@ class PmergeMe
             // mm fct
             bool    checkData(int argc, char **argv);
             bool    isNotDigite(std::string str);
+            bool    checkForDup(const std::vector<int>& temp);
             void    copyData(const std::vector<int>     listNumber);
             void    sortVector(void);
             void    sortDeque (void);
