@@ -35,7 +35,7 @@ class PmergeMe
             PmergeMe(const PmergeMe &other);
             PmergeMe &operator=(const PmergeMe &other);
             ~PmergeMe();
-            // mm fct
+        // mm fct
             bool    checkData(int argc, char **argv);
             bool    isNotDigite(std::string str);
             bool    checkForDup(const std::vector<int>& temp);
